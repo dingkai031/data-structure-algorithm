@@ -40,6 +40,26 @@ export default class SingleLinkedList {
     }
   }
 
+  removeHead() {
+    const removedHead = this.head;
+
+    if (!removedHead) return;
+    this.head = this.head.getNextNode();
+    return `removed node ${removedHead.data}`;
+  }
+
+  removeTail() {
+    let currentNode = this.head;
+    if (!currentNode) return;
+    if (!currentNode.getNextNode()) {
+      return (this.head = currentNode.getNextNode());
+    }
+    while (currentNode.getNextNode().getNextNode()) {
+      currentNode = currentNode.getNextNode();
+    }
+    currentNode.next = null;
+  }
+
   removeNode(data) {
     // initiate 2 pointer
     let currentNode = this.head;
@@ -69,24 +89,53 @@ export default class SingleLinkedList {
     previousNode.setNextNode(currentNode.getNextNode());
   }
 
-  removeHead() {
-    const removedHead = this.head;
+  swapNode(data1, data2) {
+    this.printList();
+    console.log(`Swapping ${data1} and ${data2}:`);
+    let node1Prev = null;
+    let node2Prev = null;
+    let node1 = this.head;
+    let node2 = this.head;
 
-    if (!removedHead) return;
-    this.head = this.head.getNextNode();
-    return `removed node ${removedHead.data}`;
-  }
+    if (data1 === data2)
+      return console.log("Elements are the same - no swap to be made");
 
-  removeTail() {
-    let currentNode = this.head;
-    if (!currentNode) return;
-    if (!currentNode.getNextNode()) {
-      return (this.head = currentNode.getNextNode());
+    while (node1 !== null) {
+      if (node1.data === data1) {
+        break;
+      }
+      node1Prev = node1;
+      node1 = node1.getNextNode();
     }
-    while (currentNode.getNextNode().getNextNode()) {
-      currentNode = currentNode.getNextNode();
+
+    while (node2 !== null) {
+      if (node2.data === data2) {
+        break;
+      }
+      node2Prev = node2;
+      node2 = node2.getNextNode();
     }
-    currentNode.next = null;
+
+    if (node1 === null || node2 === null)
+      return console.log(
+        "Swap not possible - one or more element is not in the list"
+      );
+
+    if (node1Prev === null) {
+      this.head = node2;
+    } else {
+      node1Prev.setNextNode(node2);
+    }
+
+    if (node2Prev === null) {
+      this.head = node1;
+    } else {
+      node2Prev.setNextNode(node1);
+    }
+
+    let temp = node1.getNextNode();
+    node1.setNextNode(node2.getNextNode());
+    node2.setNextNode(temp);
   }
 
   printList() {

@@ -5,7 +5,7 @@ export default class Node {
   }
 
   setNextNode(node) {
-    if (!(node instanceof Node)) {
+    if (!(node instanceof Node) && node !== null) {
       throw new Error("Next Node must be a member of node class");
     }
     this.next = node;

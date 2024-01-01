@@ -2,8 +2,11 @@ import SingleLinkedList from "./helpers/SingleLinkedList.mjs";
 
 // singleLinkedList
 const food = new SingleLinkedList();
-food.addToHead("mi goreng");
-food.addToHead("mi kuah");
+food.addToTail("mi kuah");
+food.addToTail("soto");
+food.addToTail("mi goreng");
+food.addToTail("cap cay");
 
 // food.removeNode("mi bihun"); //will throw an error
+food.swapNode("mi kuah", "cap cay");
 food.printList();
