@@ -138,6 +138,22 @@ export default class SingleLinkedList {
     node2.setNextNode(temp);
   }
 
+  reverseList() {
+    this.printList();
+    let prev = null;
+    let next = null;
+    let currentNode = this.head;
+
+    while (currentNode) {
+      next = currentNode.getNextNode();
+      currentNode.setNextNode(prev);
+      prev = currentNode;
+      currentNode = next;
+    }
+
+    this.head = prev;
+  }
+
   printList() {
     let currentNode = this.head;
     if (!currentNode)

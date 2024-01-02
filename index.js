@@ -8,5 +8,6 @@ food.addToTail("mi goreng");
 food.addToTail("cap cay");
 
 // food.removeNode("mi bihun"); //will throw an error
-food.swapNode("mi kuah", "cap cay");
+// food.swapNode("mi kuah", "cap cay");
+food.reverseList();
 food.printList();
